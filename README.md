@@ -19,8 +19,11 @@ python subneting.py / python3 subneting.py
 Una vez que se ejecute el programa, le pedirá los siguientes datos por pantalla:
 
 -> Dirección IP
+
 -> Máscara
--> El número de subredes 
+
+-> El número de subredes
+
 -> Los equipos que se desean por cada subred.
 
 ![imagen](https://user-images.githubusercontent.com/101093078/161427620-d15dc515-4e1a-4fb0-b577-fc0e6dc1e8f2.png)
@@ -35,10 +38,22 @@ I am not a python professional and this is my first project done in this languag
 
 mail: fmcb1993@gmail.com.
 
-Requirements:
+Run:
 
 -> Have python installed on your operating system.
 
 Usage example: python subneting.py / python3 subneting.py
+
+# Use
+
+Once the program runs, you will be prompted for the following data on the screen:
+
+-> IP address
+
+-> Mask
+
+-> The number of subnets
+
+-> The number of computers that you want for each subnet.
 
 It is still in error review, I regret the possible failures that may be generated.
