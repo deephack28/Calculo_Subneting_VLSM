@@ -10,7 +10,18 @@ Requisitos:
 
 -> Tener instalado python en su sistema operativo.
 
-Ejemplo de uso: python subneting.py / python3 subneting.py
+# Ejecución: 
+
+python subneting.py / python3 subneting.py
+
+# Uso
+
+Una vez que se ejecute el programa, le pedirá los siguientes datos por pantalla:
+
+-> Dirección IP
+-> Máscara
+-> El número de subredes 
+-> Los equipos que se desean por cada subred.
 
 ![imagen](https://user-images.githubusercontent.com/101093078/161427620-d15dc515-4e1a-4fb0-b577-fc0e6dc1e8f2.png)
 
