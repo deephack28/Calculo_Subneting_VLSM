@@ -252,15 +252,3 @@ for x in range(int(subredes)):
     print("Dirección Broadcast: "+ str(tratamiento_ip(varias_ips[x],mascara_v2[x])[3]))
     varias_ips.append(ultimo_broadcast)
     contador += 1
-    
-
-
-
-#print("Red: " +str(funcion_red(ip,buscar_posicion(quitar_barra_mascara))))
-#print("Broadcas: "+ str(funcion_broadcast(ip,buscar_posicion(mascara))))
-
-
-
-
-
-
