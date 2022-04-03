@@ -6,7 +6,7 @@ No soy un profesional de python y este es mi primer proyecto realizado en este l
 
 correo: fmcb1993@gmail.com.
 
-Requisitos: 
+# Requisitos: 
 
 -> Tener instalado python en su sistema operativo.
 
@@ -38,7 +38,7 @@ I am not a python professional and this is my first project done in this languag
 
 mail: fmcb1993@gmail.com.
 
-Run:
+# Run:
 
 -> Have python installed on your operating system.
 
