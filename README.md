@@ -40,11 +40,12 @@ mail: fmcb1993@gmail.com.
 
 # Run:
 
--> Have python installed on your operating system.
+Have python installed on your operating system.
 
-Usage example: python subneting.py / python3 subneting.py
 
 # Use
+
+Usage example: python subneting.py / python3 subneting.py
 
 Once the program runs, you will be prompted for the following data on the screen:
 
