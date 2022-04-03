@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 global listas_numero_host
 listas_numero_host = list()
 
@@ -11,7 +12,8 @@ def max_hosts(mascara):
     mascara = tratamiento_mascara(mascara)[3]
     hosts = 32 - int(mascara)
     maximo = 2**hosts
-    return maximo
+    total = maximo -2
+    return total
 
 def comprobar_letra(dato):
     ip_decimal = ""
@@ -222,6 +224,9 @@ ip = input("Dime la dirección ip: ")
 todos_los_errores(ip)
 mascara = input("Dime la mascara: ")
 todos_los_errores(ip)
+if tratamiento_mascara(mascara)[3] > 30 or tratamiento_mascara(mascara)[3] < 0:
+    print("La máscara no es válida")
+    exit() 
 subredes= input("Cuantas subredes quieres: ")
 todos_los_errores(ip)
 
