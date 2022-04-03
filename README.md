@@ -14,6 +14,8 @@ Ejemplo de uso: python subneting.py / python3 subneting.py
 
 ![imagen](https://user-images.githubusercontent.com/101093078/161427620-d15dc515-4e1a-4fb0-b577-fc0e6dc1e8f2.png)
 
+Aun esta en revisión de errores, lamento los posibles fallos que se puedan generar.
+
 # English 
 # Calculations of variably small size subnet masks (VLSM)
 Tool programmed in Python3, its function is to calculate the IP addresses according to the subnets and equipment that you need.
@@ -27,3 +29,5 @@ Requirements:
 -> Have python installed on your operating system.
 
 Usage example: python subneting.py / python3 subneting.py
+
+It is still in error review, I regret the possible failures that may be generated.
