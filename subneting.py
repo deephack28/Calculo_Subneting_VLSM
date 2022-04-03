@@ -64,12 +64,32 @@ def suma_binario(ip_binario):
     ip_convertida =separar_ip(ip_binario)
     puntitos = funcion_puntitos(ip_convertida)
     a = "1"
-    rango = slice(27,36)
-    subcadena = puntitos[rango]
-    sum = bin(int(subcadena, 2) + int(a,2))[2:]
-    nueva_ip = puntitos.replace(subcadena, sum)
-    ip_decimal_definitiva = funcion_decimal(nueva_ip)
-    return ip_decimal_definitiva
+    cuarto_octal = slice(27,36)
+    tercer_octal = slice(18,26)
+
+    ip_cuarto_octal = puntitos[cuarto_octal]
+    ip_tercer_octal = puntitos[tercer_octal]
+
+    if ip_cuarto_octal == "11111111":
+        sumar2 = bin(int(ip_tercer_octal,2)+ int(a,2))[2:].zfill(8)
+        remplazar_tercer_octal = puntitos.replace(ip_tercer_octal, sumar2)
+        remplazar_cuarto_octal = remplazar_tercer_octal.replace(ip_cuarto_octal, "00000000")
+        ip_decimal_definitiva = funcion_decimal(remplazar_cuarto_octal)
+        return ip_decimal_definitiva
+    else:
+        sum = bin(int(ip_cuarto_octal, 2) + int(a,2))[2:]
+        remplazar_cuarto_octal =""
+        if sum == "11111111":
+            sumar2 = bin(int(ip_tercer_octal,2)+ int(a,2))[2:].zfill(8)
+            remplazar_tercer_octal = puntitos.replace(ip_tercer_octal, sumar2)
+            remplazar_cuarto_octal = remplazar_tercer_octal.replace(ip_cuarto_octal, "00000000")
+            ip_decimal_definitiva = funcion_decimal(remplazar_cuarto_octal)
+            return ip_decimal_definitiva
+        else:
+            sum = bin(int(ip_cuarto_octal, 2) + int(a,2))[2:]
+            remplazar_cuarto_octal = puntitos.replace(ip_cuarto_octal, sum)
+            ip_decimal_definitiva = funcion_decimal(remplazar_cuarto_octal)
+            return ip_decimal_definitiva
 
 #MASCARA
 #Calcular la nueva mascara para las subredes 
@@ -168,7 +188,7 @@ def separar_ip(ip):
 
 
 def funcion_red(ip,posicion_mascara):
-    for sustitucion in range(int(posicion_mascara-1),32):
+    for sustitucion in range(int(posicion_mascara),32):
         l = list(ip)
         l[sustitucion] ="0"
         ip_red = ip = "".join(l)
