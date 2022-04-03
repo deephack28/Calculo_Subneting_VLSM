@@ -8,7 +8,7 @@ correo: fmcb1993@gmail.com.
 
 # Requisitos: 
 
--> Tener instalado python en su sistema operativo.
+Tener instalado python en su sistema operativo.
 
 # Ejecución: 
 
