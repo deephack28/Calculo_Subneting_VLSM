@@ -256,14 +256,15 @@ while not correcto:
 
 
 
-lista_ordenada = sorted(listas_numero_host, reverse=True)
-total_host_introducidos = sum(lista_ordenada)
+
 correct = False
 while not correct:
     try:
         for veces in range(int(subredes)):
             numero_host= int(input("Cuantos equipos por subred: "))
             listas_numero_host.append(numero_host)
+            lista_ordenada = sorted(listas_numero_host, reverse=True)
+            total_host_introducidos = sum(lista_ordenada)
         if total_host_introducidos > max_hosts(mascara)[0]:
             print("No se pueden introducir tantos equipos")
             os.system("pause")
