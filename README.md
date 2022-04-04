@@ -8,7 +8,10 @@ correo: fmcb1993@gmail.com.
 
 # Requisitos: 
 
-Tener instalado python en su sistema operativo.
+-> python o python3 
+
+-> Disponer de las librería os
+
 
 # Ejecución: 
 
@@ -40,7 +43,9 @@ mail: fmcb1993@gmail.com.
 
 # Run:
 
-Have python installed on your operating system.
+-> python or python3
+
+-> need library os
 
 
 # Use
