@@ -1,65 +1,21 @@
 #!/usr/bin/env python3
+from glob import escape
+import os
 global listas_numero_host
 listas_numero_host = list()
-
-#Errores
-def vacio(dato):
-    if dato == "":
-        print("Se debe de introducir algún dato")
-        exit()
+global lista_ordenada
+def borrarPantalla():
+    if os.name == "posix":
+        os.system("clear")
+    elif os.name == "ce" or os.name == "nt" or os.name == "dos":
+        os.system("cls")
 
 def max_hosts(mascara):
     mascara = tratamiento_mascara(mascara)[3]
     hosts = 32 - int(mascara)
     maximo = 2**hosts
     total = maximo -2
-    return total
-
-def comprobar_letra(dato):
-    ip_decimal = ""
-    try:
-        sec =""
-        for x in ip:
-            if x != ".":
-                sec += x
-            else:
-                ip_decimal = sec
-                ip_decimal = int(ip_decimal)
-                sec =""
-        ip_decimal = int(sec)
-    except:
-        print("No puede contener letras")
-        exit()
-
-def comprobacion_correcta_ip(ip):
-    contador = 0
-    sec =""
-    for x in ip:
-        if x != ".":
-            sec += x
-        else:
-            ip_decimal = sec
-            contador += 1
-        if ip_decimal > 255 or ip_decimal < 0 :
-            print("La ip introducida no es correcta")
-            exit()
-            break
-        elif contador != 3 and ip_decimal == "":
-            print("La ip introducida no es correcta")
-            exit()
-            break
-def todos_los_errores(dato):
-    esta_vacio = vacio(dato)
-    letra= comprobar_letra(dato)
-
-    if esta_vacio == True or letra == True:
-        print("Se debe de introducir algún dato")
-        exit()
-    else:
-        pass
-
-    return 
-
+    return total, maximo
 
 #Operacion en binario
 def suma_binario(ip_binario):
@@ -110,8 +66,6 @@ def mascara_nueva_host(mascv2):
                 lista_host_maximo.append(host_maximo)
                 break
     return lista_mascara_barra, lista_host_maximo
-
-
 
 
 def funcion_puntitos(ip):
@@ -220,32 +174,113 @@ def funcion_ultimo_host(ip):
     ip_ultimo_host = funcion_decimal(ip_ultimo_host)
     return ip_ultimo_host
 
-ip = input("Dime la dirección ip: ")
-todos_los_errores(ip)
-mascara = input("Dime la mascara: ")
-todos_los_errores(ip)
-if tratamiento_mascara(mascara)[3] > 30 or tratamiento_mascara(mascara)[3] < 0:
-    print("La máscara no es válida")
-    exit() 
-subredes= input("Cuantas subredes quieres: ")
-todos_los_errores(ip)
 
-for veces in range(int(subredes)):
-    numero_host= int(input("Cuantos equipos por subred: "))
-    listas_numero_host.append(numero_host)
+
+#Errores
+
+correcto = False
+while not correcto:
+    try:
+        ip = input("Dime la dirección ip: ")
+        guardar =""
+
+        for x in ip:
+            if x != ".":
+                guardar += x
+            else:
+                octal = int(guardar)
+                guardar =""
+                if octal > 255 or octal <= 0:
+                    
+                    break
+                else:
+                    correct = True
+            
+        ultimo = int(guardar)
+        if ultimo > 255 or ultimo < 0:
+            print("Formato incorrecto")
+        else:
+            correcto = True
+    except (RuntimeError, TypeError, NameError, IndexError, ValueError):
+        print("Error, formato incorrecto")
+
+correcto = False
+while not correcto:
+    try:
+        mascara = input("Dime la máscara: ")
+        nueva_mascara = tratamiento_mascara(mascara)[3]
+        
+        if nueva_mascara == "":
+            print("No has introducido nada")
+            os.system("pause")
+            borrarPantalla()
+            correcto = False
+        elif nueva_mascara <= 0 or nueva_mascara > 32:
+            print("La máscara no es correcta")
+            os.system("pause")
+            borrarPantalla()
+            correcto = False
+        else:
+            nueva_mascara = int(nueva_mascara)
+            correcto = True
+    except (RuntimeError, TypeError, NameError, IndexError, ValueError):
+        print("Error, formato incorrecto")
+        os.system("pause")
+        borrarPantalla()
+
+correcto = False
+while not correcto:
+    try:
+        subredes = int(input("Cuantas Subrredes quieres: "))
+        if subredes == "":
+            print("No has introducido nada")
+            os.system("pause")
+            borrarPantalla()
+            correcto = False
+        elif subredes <= 0 or subredes > max_hosts(mascara)[1]:
+            print("Es imposible calcular todas esas subrredes")
+            os.system("pause")
+            borrarPantalla()
+            correcto = False
+        else:
+            subredes = int(subredes)
+            correcto = True
+    except (RuntimeError, TypeError, NameError, IndexError, ValueError):
+        print("Error, formato incorrecto")
+        os.system("pause")
+        borrarPantalla()
+
+
+
+
+
+
 
 lista_ordenada = sorted(listas_numero_host, reverse=True)
-
-
-total_host = sum(lista_ordenada)
-if int(max_hosts(mascara)) < int(total_host):
-    print("La ip proporcionada no puede direccionar a "+ str(total_host) + " hosts")
-    exit() 
+total_host_introducidos = sum(lista_ordenada)
+correct = False
+while not correct:
+    try:
+        for veces in range(int(subredes)):
+            numero_host= int(input("Cuantos equipos por subred: "))
+            listas_numero_host.append(numero_host)
+        if total_host_introducidos > max_hosts(mascara)[0]:
+            print("No se pueden introducir tantos equipos")
+            os.system("pause")
+            borrarPantalla()
+            correct = False
+        else:
+            correct = True
+    except (RuntimeError, TypeError, NameError, IndexError, ValueError):
+        print("Error, formato incorrecto")
+        os.system("pause")
+        borrarPantalla()
+        
 
 print("-------------------------------")
 print("Datos introducidos: ")
 print("Ip: "+ str(ip))
-print("Máximo hosts: "+ str(max_hosts(mascara)))
+print("Máximo hosts: "+ str(max_hosts(mascara)[0]))
 print("Dirección red: "+ str(tratamiento_ip(ip,mascara)[2]))
 direccion_red = tratamiento_ip(ip,mascara)[2]
 print("Primer Host: "+ str(tratamiento_ip(ip,mascara)[4]))
@@ -253,6 +288,7 @@ print("Último Host: "+ str(tratamiento_ip(ip,mascara)[5]))
 print("Dirección Broadcast: "+ str(tratamiento_ip(ip,mascara)[3]))
 print("-------------------------------")
 print("SUBREDES")
+
 varias_ips = list()
 varias_ips.append(direccion_red)
 mascara_v2 = list()
@@ -266,7 +302,7 @@ for y in mascara_nueva_host(mascara)[0]:
 for z in mascara_nueva_host(mascara)[1]:
     varias_hosts_maximo.append(z)
 for x in range(int(subredes)):
-     
+    
     print("--------------")
     print("Subred: "+str(contador) )
     print("Hosts: "+ str(lista_ordenada[x]))
